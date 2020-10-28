@@ -30,8 +30,10 @@ public class Activator : MonoBehaviour
         if(Input.GetKeyDown(key))
             StartCoroutine(ButtonPressed());
 
-        if(Input.GetKeyDown(key) && triggerIsActive)
+        if(Input.GetKeyDown(key) && triggerIsActive){
             Destroy(note);
+            AddScore();
+        }
 
     }
 
@@ -48,6 +50,12 @@ public class Activator : MonoBehaviour
     private void OnTriggerExit2D(Collider2D col) {
         
         triggerIsActive = false;
+
+    }
+
+    private void AddScore(){
+
+        PlayerPrefs.SetInt("performanceScore", PlayerPrefs.GetInt("performanceScore", 0) + 100);
 
     }
 
